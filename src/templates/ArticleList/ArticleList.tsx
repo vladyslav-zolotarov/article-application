@@ -2,29 +2,29 @@ import { FC } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { getArticlePosts } from '../../api/endpoints';
-import { IPosts } from '../../types/types';
-
+import { IPost } from '../../types/types';
+import { shallow } from 'zustand/shallow';
 import ArticlePost from '../ArticlePost/ArticlePost';
 import List from '../../components/List/List/List';
+import { useArticleListStore } from '../../utils/store';
 
 const ArticleList: FC = () => {
-    const [articles, setArticles] = useState<IPosts[]>([]);
+    const { articles, loading, error, fetchArticles } = useArticleListStore((state) => ({
+        articles: state.articles,
+        loading: state.loading,
+        error: state.error,
+        fetchArticles: state.fetchArticles,
+    }), shallow)
 
     useEffect(() => {
-        (async () => {
-            try {
-                const response = await getArticlePosts();
-                setArticles(response.data);
-            } catch (e) {
-                console.log(e);
-            }
-        })();
+        fetchArticles()
     }, [])
 
     return (
+        loading ? <h1>Loading...</h1> :
         <List
             items={articles}
-            renderItem={(post: IPosts) => <ArticlePost post={post} key={post.title} />}
+            renderItem={(post: IPost) => <ArticlePost post={post} key={post.title} />}
         />
     );
 };

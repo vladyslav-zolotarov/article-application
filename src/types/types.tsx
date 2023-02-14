@@ -1,14 +1,14 @@
 export interface IUser {
-    id: string;
+    id?: string;
     fullName: string;
     email: string;
-    avatarUrl: string;
-    createdAt: string;
+    avatarUrl?: string;
+    createdAt?: string | Date;
     passwordHash: string;
-    updatedAt: string;
+    updatedAt?: string;
 }
 
-export interface IPosts {
+export interface IPost {
     _id: string;
     title: string;
     text: string;

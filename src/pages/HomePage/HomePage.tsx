@@ -1,12 +1,11 @@
 import React from 'react';
+import ArticleList from '../../templates/ArticleList/ArticleList';
 import BlogList from '../../templates/ArticleList/ArticleList';
 
 const HomePage = () => {
     return (
-        <div>
-            <h1>Home Page</h1>
-
-            {/* <BlogList /> */}
+        <div className='home__page_container'>
+            <ArticleList />
         </div>
     );
 };

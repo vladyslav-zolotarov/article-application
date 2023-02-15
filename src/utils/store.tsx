@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware'
 import { getArticlePosts, getMe, getOneArticlePost } from '../api/endpoints';
+import { IPost } from '../types/types';
 
 interface ArticleState {
     activeArticleId: string;
@@ -9,7 +10,7 @@ interface ArticleState {
 }
 
 interface ArticleListState {
-    articles: [];
+    articles: IPost[];
     loading: boolean;
     error: unknown;
     fetchArticles: () => void;

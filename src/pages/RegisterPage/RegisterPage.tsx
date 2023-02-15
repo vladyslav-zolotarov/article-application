@@ -4,16 +4,11 @@ import { onRegistration } from '../../api/endpoints';
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from '../../utils/store';
 import { shallow } from 'zustand/shallow';
-
-type FormData = {
-    fullName: string;
-    email: string;
-    password: string;
-};
+import { IUserRegister } from '../../types/types';
 
 const RegisterPage: FC = () => {
     let navigate = useNavigate();
-    const { handleSubmit, control, register, reset, formState: { errors, isValid } } = useForm<FormData>({ mode: "onChange" });
+    const { handleSubmit, control, register, reset, formState: { errors, isValid } } = useForm<IUserRegister>({ mode: "onChange" });
     const [isLoaded, setIsLoaded] = useState(false);
 
     const { token, setToken } = useUserStore((state) => ({
@@ -47,7 +42,7 @@ const RegisterPage: FC = () => {
     }
 
     return (
-        <div className='register__page_container'>
+        <div className='register_page__container'>
             <form className='py-9 max-w-sm mx-auto flex flex-col justify-center align-center' onSubmit={handleSubmit(onSubmit)}>
                 <h1 className='mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white'>Register page</h1>
 

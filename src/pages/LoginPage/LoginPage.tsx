@@ -4,16 +4,11 @@ import { onLogin } from '../../api/endpoints';
 import { useNavigate } from "react-router-dom";
 import { useUserStore } from '../../utils/store';
 import { shallow } from 'zustand/shallow';
-
-type FormData = {
-    fullName: string;
-    email: string;
-    password: string;
-};
+import { IUserLogin } from '../../types/types';
 
 const LoginPage: FC = () => {
     let navigate = useNavigate();
-    const { handleSubmit, control, register, reset, formState: { errors, isValid } } = useForm<FormData>({ mode: "onChange" });
+    const { handleSubmit, control, register, reset, formState: { errors, isValid } } = useForm<IUserLogin>({ mode: "onChange" });
     const [isLoaded, setIsLoaded] = useState(false);
 
     const { token, setToken } = useUserStore((state) => ({
@@ -31,7 +26,6 @@ const LoginPage: FC = () => {
         try {
             const response = await onLogin(data);
             setIsLoaded(false);
-
             if ('token' in response.data) {
                 setToken(response.data.token);
                 navigate('/');
@@ -49,7 +43,7 @@ const LoginPage: FC = () => {
 
 
     return (
-        <div className="login__page_container">
+        <div className="login_page__container">
             <form className='py-9 max-w-sm mx-auto flex flex-col justify-center align-center' onSubmit={handleSubmit(onSubmit)}>
                 <h1 className='mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white'>Login page</h1>
 

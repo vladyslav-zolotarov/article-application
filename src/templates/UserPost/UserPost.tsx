@@ -32,7 +32,7 @@ const UserPost: FC<UserPostProps> = ({user}) => {
             <span className='mb-2 text-xl font-bold leading-none text-gray-900 dark:text-white'>Fullname:<span className='ml-2 font-normal'>{user.fullName}</span></span>
             <span className='mb-2 text-xl font-bold leading-none text-gray-900 dark:text-white'>Email:<span className='ml-2 font-normal'>{user.email}</span></span>
             <span className='mb-2 text-xl font-bold leading-none text-gray-900 dark:text-white'>Account created at:<span className='ml-2 font-normal'>{(format(new Date(`${user.createdAt}`), 'MMMM dd, yyyy'))}</span></span>
-            <button onClick={onSignOut}>Sign out</button>
+            <button onClick={onSignOut} className="py-2.5 px-5 mr-2 mt-8 w-full text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 inline-flex items-center justify-center">Sign out</button>
         </div>
     );
 };

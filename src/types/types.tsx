@@ -3,11 +3,24 @@ export interface IUser {
     fullName: string;
     email: string;
     avatarUrl?: string;
-    createdAt?: string | Date;
+    createdAt?: string;
     passwordHash: string;
     updatedAt?: string;
 }
 
+export interface IUserRegister {
+    fullName: string;
+    email: string;
+    password: string;
+    token: string;
+}
+
+export interface IUserLogin {
+    email: string;
+    password: string;
+    token: string;
+}
+    
 export interface IPost {
     _id: string;
     title: string;
@@ -16,6 +29,6 @@ export interface IPost {
     createdAt: string;
     updatedAt: string;
     user: IUser;
-    imageUrl: string;
+    imageUrl: string | any;
     tags: Array<string>;
 }

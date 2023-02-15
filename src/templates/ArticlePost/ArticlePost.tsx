@@ -2,11 +2,13 @@ import React, { FC } from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { IPost } from '../../types/types';
-import { useArticleStore } from '../../utils/store';
+import { useArticleStore, useUserStore } from '../../utils/store';
 import { EyeIcon } from "@heroicons/react/24/solid";
 import { format } from 'date-fns';
 
 import UserMinPost from '../UserMinPost/UserMinPost';
+import { removeOneArticlePost } from '../../api/endpoints';
+import { shallow } from 'zustand/shallow';
 
 interface ArticlePostProps {
   post: IPost;
@@ -15,10 +17,20 @@ interface ArticlePostProps {
 const ArticlePost: FC<ArticlePostProps> = ({ post }) => {
   const { setActiveArticleId } = useArticleStore();
 
+  const { token } = useUserStore((state) => ({
+    token: state.token,
+  }), shallow);
+
+  const onRemovePostHandler = () => {
+    removeOneArticlePost(post._id, token)
+  }
+
   return (
     <div className='article__item p-5 max-w-4xl bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mb-7'>
-      <UserMinPost user={post.user} />
-
+      <div className='flex'>
+        <UserMinPost user={post.user} />
+        <button onClick={onRemovePostHandler}>Remove</button>
+      </div>
       <div className='article__item_sub mt-5'>
         <Link onClick={() => setActiveArticleId(post._id)} to={`/post/${post._id}`}>
           <img className='rounded-lg mb-2 w-full' alt={post.title} src={post.imageUrl} />

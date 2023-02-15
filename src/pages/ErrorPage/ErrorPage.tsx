@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 const ErrorPage: FC = () => {
 
     return (
-        <div className="error__page_container">
+        <div className="error_page__container">
             <div className='error_content h-full'>
                 <div className="text-center h-full flex flex-col justify-center items-center">
                     <p className="text-base font-semibold text-indigo-600">404</p>

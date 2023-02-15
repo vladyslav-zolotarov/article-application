@@ -30,7 +30,7 @@ const ArticlePage: FC<ArticlePageProps> = ({ id }) => {
 
     return (
         loading ? <h1>Loading...</h1> :
-            <div className='article__page_container'>
+            <div className='article_page__container'>
                 <div className='article__item_sub'>
                     <img alt={articleArticle?.title} src={articleArticle?.imageUrl} />
                     <div className='article__content'>

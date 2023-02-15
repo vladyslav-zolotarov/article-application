@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { shallow } from 'zustand/shallow';
 import UserMinPost from '../../templates/UserMinPost/UserMinPost';
 import { useDarkModeStore, useUserStore } from '../../utils/store';
 
 import { SunIcon, MoonIcon, ChevronDownIcon, UserCircleIcon, ArrowLeftOnRectangleIcon } from "@heroicons/react/24/solid";
 
-const Header = () => {
+const Header: FC = () => {
     const [dropdownOpened, setDropdownOpened] = useState(false);
 
     const { darkMode, setDarkMode } = useDarkModeStore((state) => ({
@@ -48,10 +48,10 @@ const Header = () => {
                                 <a href="/" className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Home</a>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">List of posts</a>
+                                <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">My posts</a>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Add new post</a>
+                                <a href="/post/create" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Add new</a>
                             </li>
                             <li>
                                 <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
@@ -62,8 +62,8 @@ const Header = () => {
                         <button onClick={setDarkMode} className="relative inline-flex items-center cursor-pointer mr-16">
                             <span className="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300 md:hover:text-blue-700 md:dark:hover:text-white">{
                                 darkMode ?
-                                    <span className='flex items-center'><SunIcon className="h-6 h-6 mr-2" />Light mode</span> :
-                                    <span className='flex items-center'><MoonIcon className="h-6 h-6 mr-2" />Dark mode</span>
+                                    <span className='flex items-center'><SunIcon className="h-6 mr-2" />Light mode</span> :
+                                    <span className='flex items-center'><MoonIcon className="h-6 mr-2" />Dark mode</span>
                             }</span>
                         </button>
 

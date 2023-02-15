@@ -18,7 +18,7 @@ const UserPage: FC = () => {
     })
 
     return (
-        <div className='user__page_container flex justify-center'>
+        <div className='user_page__container flex justify-center'>
             <UserPost user={userInfo} />
         </div>
     );

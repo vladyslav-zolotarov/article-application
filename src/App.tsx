@@ -10,6 +10,7 @@ import RegisterPage from './pages/RegisterPage/RegisterPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import Header from './components/Header/Header';
 import UserPage from './pages/UserPage/UserPage';
+import NewArticlePage from './pages/NewArticlePage/NewArticlePage';
 
 function App() {
   const [toggleDark, setToggleDark] = useState('');
@@ -51,6 +52,11 @@ function App() {
     {
       path: "/post/:id",
       element: <ArticlePage id={activeArticleId} />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/post/create",
+      element: <NewArticlePage />,
       errorElement: <ErrorPage />,
     }
   ]);

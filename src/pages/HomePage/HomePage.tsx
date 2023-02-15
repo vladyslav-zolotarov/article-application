@@ -4,7 +4,7 @@ import BlogList from '../../templates/ArticleList/ArticleList';
 
 const HomePage = () => {
     return (
-        <div className='home__page_container'>
+        <div className='home_page__container'>
             <ArticleList />
         </div>
     );

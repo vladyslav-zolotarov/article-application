@@ -20,11 +20,11 @@ const Header: FC = () => {
         deleteToken: state.deleteToken,
     }), shallow);
 
-    useEffect(() => {
-        if (token && !userInfo.id) {
-            fetchUserInfo(token);
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (token && !userInfo.id) {
+    //         fetchUserInfo(token);
+    //     }
+    // }, [])
 
     const onDropdownToggle = () => {
         setDropdownOpened(!dropdownOpened);

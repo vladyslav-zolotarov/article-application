@@ -2,17 +2,21 @@ import React, { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
-import { addNewArticle } from '../../api/endpoints';
+import { updateOneArticlePost } from '../../api/endpoints';
 import { IPost } from '../../types/types';
 import { useArticleStore, useUserStore } from '../../utils/store';
 
-const NewArticlePage: FC = () => {
+interface EditArticlePageProps {
+    post: IPost[];
+}
+
+const EditArticlePage: FC<EditArticlePageProps> = ({ post }) => {
     let navigate = useNavigate();
     const [isLoaded, setIsLoaded] = useState(false);
     // const [imgValue, setImageValue] = useState({});
     const { handleSubmit, control, register, reset, formState: { errors, isValid } } = useForm<IPost>({ mode: "onChange" });
-    const { setActiveArticleId } = useArticleStore();
-    
+    const { activeArticleId } = useArticleStore();
+
     const { token } = useUserStore((state) => ({
         token: state.token,
     }), shallow);
@@ -20,8 +24,8 @@ const NewArticlePage: FC = () => {
     const onSubmit = async (data: {}) => {
         if (data && token) {
             try {
-                const response = await addNewArticle(data, token);
-                setActiveArticleId(response.data._id);
+                const response = await updateOneArticlePost(activeArticleId, data, token);
+                // setActiveArticleId(response.data._id);
                 // uploadImg(imgValue, token);
                 navigate(`/post/${response.data._id}`);
                 setIsLoaded(false);
@@ -55,9 +59,9 @@ const NewArticlePage: FC = () => {
                                 <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
                                 <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                             </div>
-                            <input id="dropzone-file" type="file" className="hidden" 
+                            <input id="dropzone-file" type="file" className="hidden"
                             // onChange={handleFileUploaded}
-                             />
+                            />
                         </label>
                     </div>
                 </div>
@@ -65,7 +69,7 @@ const NewArticlePage: FC = () => {
                 <div className='title_input pb-7'>
                     <label htmlFor="title" className="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Title: *</label>
 
-                    <input id='title' type="text" aria-describedby="helper-text-title" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write article title here..."
+                    <input defaultValue={post[0].title} id='title' type="text" aria-describedby="helper-text-title" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write article title here..."
                         {...register("title", {
                             required: "This field is required. Please enter title!",
                             minLength: { value: 3, message: "The title must be at least 3 characters long." },
@@ -77,7 +81,7 @@ const NewArticlePage: FC = () => {
 
                 <div className='text_input pb-7'>
                     <label htmlFor="text" className="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Text: *</label>
-                    <textarea id="text" rows={6} aria-describedby="helper-text-text" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write article text here..."
+                    <textarea defaultValue={post[0].text} id="text" rows={6} aria-describedby="helper-text-text" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write article text here..."
                         {...register("text", {
                             required: "This field is required. Please enter text!",
                             minLength: { value: 3, message: "The text must be at least 3 characters long." },
@@ -108,4 +112,4 @@ const NewArticlePage: FC = () => {
     );
 };
 
-export default NewArticlePage;
+export default EditArticlePage;

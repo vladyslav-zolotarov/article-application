@@ -15,7 +15,7 @@ const UserPage: FC = () => {
         if (token && !userInfo.id) {
             fetchUserInfo(token)
         }
-    })
+    }, [])
 
     return (
         <div className='user_page__container flex justify-center'>

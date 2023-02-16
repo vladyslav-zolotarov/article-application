@@ -26,8 +26,8 @@ export const removeOneArticlePost = async (id: string, token: string) => {
     });
 } 
 
-export const updateOneArticlePost = async (id: string, token: string) => {
-    return await api.patch(`/posts/${id}`, {
+export const updateOneArticlePost = async (id: string, data: {}, token: string) => {
+    return await api.patch(`/posts/${id}`, data, {
         headers: {
             "Authorization": `Bearer ${token}`
         }
@@ -58,8 +58,3 @@ export const getMe = async (token: string) => {
 //         }
 //     })
 // }
-
-
-
-// app.delete('/posts/:id', checkAuth, PostController.remove);
-// app.patch('/posts/:id', checkAuth, postCreateValidation, handleValidationErrors, PostController.update);

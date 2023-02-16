@@ -7,6 +7,7 @@ import { shallow } from 'zustand/shallow';
 import ArticlePost from '../ArticlePost/ArticlePost';
 import List from '../../components/List/List/List';
 import { useArticleListStore } from '../../utils/store';
+import ArticlePostSkeleton from '../../skeletons/ArticlePostSkeleton/ArticlePostSkeleton';
 
 const ArticleList: FC = () => {
     const { articles, loading, error, fetchArticles } = useArticleListStore((state) => ({
@@ -21,7 +22,7 @@ const ArticleList: FC = () => {
     }, [])
 
     return (
-        loading ? <h1>Loading...</h1> :
+        loading ? <ArticlePostSkeleton /> :
         <List
             items={articles}
             renderItem={(post: IPost) => <ArticlePost post={post} key={post.title} />}

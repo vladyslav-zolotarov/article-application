@@ -14,6 +14,7 @@ interface ArticleListState {
     loading: boolean;
     error: unknown;
     fetchArticles: () => void;
+    deleteArticle: (id: string) => void;
 }
 
 interface DarkModeState {
@@ -68,6 +69,7 @@ export const useArticleListStore = create<ArticleListState>()(
                     set({ loading: false })
                 }
             },
+            deleteArticle: (id) => set((state) => ({ articles: state.articles.filter(e => e._id !== id) })),
         }), { name: "articles" })
     )
 )

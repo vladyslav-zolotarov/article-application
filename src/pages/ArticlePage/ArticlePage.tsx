@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import { useEffect } from 'react';
 import { getOneArticlePost } from '../../api/endpoints';
+import ArticlePostSkeleton from '../../skeletons/ArticlePostSkeleton/ArticlePostSkeleton';
 import { IPost } from '../../types/types';
 
 interface ArticlePageProps {
@@ -9,7 +10,7 @@ interface ArticlePageProps {
 
 const ArticlePage: FC<ArticlePageProps> = ({ id }) => {
     const [articleArticle, setArticleArticle] = useState<IPost>();
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true);
@@ -29,7 +30,7 @@ const ArticlePage: FC<ArticlePageProps> = ({ id }) => {
     }, [])
 
     return (
-        loading ? <h1>Loading...</h1> :
+        loading ? <ArticlePostSkeleton /> :
             <div className='article_page__container'>
                 <div className='article__item_sub'>
                     <img alt={articleArticle?.title} src={articleArticle?.imageUrl} />

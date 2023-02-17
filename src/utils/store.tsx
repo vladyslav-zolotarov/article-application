@@ -1,20 +1,14 @@
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware'
 import { getArticlePosts, getMe, getOneArticlePost } from '../api/endpoints';
-import { IPost } from '../types/types';
+import { IPost, IUser } from '../types/types';
 
 interface ArticleState {
-    activeArticleId: string;
-    article: {};
-    setActiveArticleId: (activeArticleId: string) => void;
-}
-
-interface ArticleListState {
     articles: IPost[];
+    fetchAllArticles: () => void;
+    deleteArticle: (id: string) => void;
     loading: boolean;
     error: unknown;
-    fetchArticles: () => void;
-    deleteArticle: (id: string) => void;
 }
 
 interface DarkModeState {
@@ -24,15 +18,7 @@ interface DarkModeState {
 
 interface UserState {
     token: string;
-    userInfo: {
-        id?: string;
-        fullName: string;
-        email: string;
-        avatarUrl?: string;
-        createdAt?: string;
-        passwordHash: string;
-        updatedAt?: string;
-    };
+    userInfo: IUser;
     loading: boolean;
     error: unknown;
     fetchUserInfo: (token: string) => void;
@@ -43,20 +29,8 @@ interface UserState {
 export const useArticleStore = create<ArticleState>()(
     devtools(
         persist((set) => ({
-            activeArticleId: '',
-            article: {},
-            setActiveArticleId: (activeArticleId) => set((state) => ({ ...state, activeArticleId })),
-        }), { name: "activeArticleId" })
-    )
-)
-
-export const useArticleListStore = create<ArticleListState>()(
-    devtools(
-        persist((set) => ({
             articles: [],
-            loading: false,
-            error: null,
-            fetchArticles: async () => {
+            fetchAllArticles: async () => {
                 set({ loading: true })
 
                 try {
@@ -70,7 +44,10 @@ export const useArticleListStore = create<ArticleListState>()(
                 }
             },
             deleteArticle: (id) => set((state) => ({ articles: state.articles.filter(e => e._id !== id) })),
-        }), { name: "articles" })
+
+            loading: false,
+            error: null,
+        }), { name: "articleStore" })
     )
 )
 
@@ -113,7 +90,8 @@ export const useUserStore = create<UserState>()(
             },
             setToken: (token) => (set(() => ({ token: token }))),
             deleteToken: () => (set(() => ({
-                token: '', userInfo: {
+                token: '', 
+                userInfo: {
                     id: '',
                     fullName: '',
                     email: '',

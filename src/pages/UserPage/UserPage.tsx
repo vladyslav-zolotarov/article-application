@@ -4,11 +4,10 @@ import UserPost from '../../templates/UserPost/UserPost';
 import { useUserStore } from '../../utils/store';
 
 const UserPage: FC = () => {
-    const { token, fetchUserInfo, userInfo, deleteToken } = useUserStore((state) => ({
+    const { token, fetchUserInfo, userInfo } = useUserStore((state) => ({
         token: state.token,
         fetchUserInfo: state.fetchUserInfo,
         userInfo: state.userInfo,
-        deleteToken: state.deleteToken,
     }), shallow);
 
     useEffect(() => {

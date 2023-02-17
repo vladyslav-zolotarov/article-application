@@ -8,13 +8,14 @@ import { IUserLogin } from '../../types/types';
 
 const LoginPage: FC = () => {
     let navigate = useNavigate();
-    const { handleSubmit, control, register, reset, formState: { errors, isValid } } = useForm<IUserLogin>({ mode: "onChange" });
-    const [isLoaded, setIsLoaded] = useState(false);
 
+    const { handleSubmit, register, formState: { errors, isValid } } = useForm<IUserLogin>({ mode: "onChange" });
     const { token, setToken } = useUserStore((state) => ({
         token: state.token,
         setToken: state.setToken,
     }), shallow);
+
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
         if (token) {

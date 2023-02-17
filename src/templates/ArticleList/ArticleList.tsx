@@ -6,15 +6,15 @@ import { IPost } from '../../types/types';
 import { shallow } from 'zustand/shallow';
 import ArticlePost from '../ArticlePost/ArticlePost';
 import List from '../../components/List/List/List';
-import { useArticleListStore } from '../../utils/store';
+import { useArticleStore } from '../../utils/store';
 import ArticlePostSkeleton from '../../skeletons/ArticlePostSkeleton/ArticlePostSkeleton';
 
 const ArticleList: FC = () => {
-    const { articles, loading, error, fetchArticles } = useArticleListStore((state) => ({
+    const { articles, loading, error, fetchArticles } = useArticleStore((state) => ({
         articles: state.articles,
         loading: state.loading,
         error: state.error,
-        fetchArticles: state.fetchArticles,
+        fetchArticles: state.fetchAllArticles,
     }), shallow)
 
     useEffect(() => {

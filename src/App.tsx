@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import HomePage from './pages/HomePage/HomePage';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, useParams } from 'react-router-dom';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
-import { useArticleListStore, useArticleStore, useDarkModeStore, useUserStore } from './utils/store';
+import {  useArticleStore, useDarkModeStore, useUserStore } from './utils/store';
 import { shallow } from 'zustand/shallow';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
@@ -14,28 +14,19 @@ import NewArticlePage from './pages/NewArticlePage/NewArticlePage';
 import EditArticlePage from './pages/EditArticlePage/EditArticlePage';
 
 function App() {
-  const [toggleDark, setToggleDark] = useState('');
-  const { activeArticleId } = useArticleStore();
-  const { articles } = useArticleListStore();
-
-  const { darkMode, setDarkMode } = useDarkModeStore((state) => ({
+  const { darkMode } = useDarkModeStore((state) => ({
     darkMode: state.darkMode,
-    setDarkMode: state.setDarkMode
   }), shallow);
 
-
-  const { token, fetchUserInfo, userInfo, deleteToken } = useUserStore((state) => ({
+  const { token, fetchUserInfo, userInfo } = useUserStore((state) => ({
     token: state.token,
     fetchUserInfo: state.fetchUserInfo,
     userInfo: state.userInfo,
     deleteToken: state.deleteToken,
   }), shallow);
 
-  // useEffect(() => {
-  //   if (token && !userInfo.id) {
-  //     fetchUserInfo(token);
-  //   }
-  // }, [])
+  const [toggleDark, setToggleDark] = useState('');
+
 
   useEffect(() => {
     if (token && !userInfo.id) {
@@ -74,7 +65,7 @@ function App() {
     },
     {
       path: "/post/:id",
-      element: <ArticlePage id={activeArticleId} />,
+      element: <ArticlePage />,
       errorElement: <ErrorPage />,
     },
     {
@@ -84,7 +75,7 @@ function App() {
     },
     {
       path: "/post/edit/:id",
-      element: <EditArticlePage post={articles.filter(article => article._id === activeArticleId)}  />,
+      element: <EditArticlePage />,
       errorElement: <ErrorPage />,
     }
   ]);

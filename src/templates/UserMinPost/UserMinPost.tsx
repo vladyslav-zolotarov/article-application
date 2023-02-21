@@ -1,21 +1,26 @@
-import React, { FC } from 'react';
+import React from 'react';
 import { IUser } from '../../types/types';
 import { UserCircleIcon } from "@heroicons/react/24/solid";
-
+// import { format } from 'date-fns';
+import format from 'date-fns/format'
+import parseISO from 'date-fns/parseISO';
 
 interface UserPostProps {
     user: IUser;
 }
 
-const UserMinPost: FC<UserPostProps> = ({ user }) => {
+const UserMinPost = ({ user }: UserPostProps) => {
     return (
-        <div className='user__info flex items-center'>
-            <div className='user_avatar mr-2 w-8 h-8 rounded-full'>
+        <div className='user__info flex items-center space-x-4'>
+            <div className='user_avatar w-10 h-10 rounded-full'>
                 {user.avatarUrl ? <img className='rounded-full' src={user.avatarUrl} alt={user.fullName} /> :
-                    <UserCircleIcon className="text-gray-500 rounded-full w-8 h-8" />
+                    <UserCircleIcon className="text-gray-500 rounded-full w-10 h-10" />
                 }
             </div>
-            <span className='user_fullname'>{user.fullName}</span>
+            <div className='flex flex-col'>
+                <span className='user_fullname font-medium'>{user.fullName}</span>
+                <span className='text-sm'>Joined in {(format(parseISO(user.createdAt!), 'MMMM yyyy'))}</span>
+            </div>
         </div>
     );
 };

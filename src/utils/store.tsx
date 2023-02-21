@@ -7,23 +7,13 @@ interface ArticleState {
     articles: IPost[];
     fetchAllArticles: () => void;
     deleteArticle: (id: string) => void;
+
+    myArticlesList: IPost[];
+    setMyArticlesList: (userId: string) => void;
+    clearMyActircleList: () => void;
+
     loading: boolean;
     error: unknown;
-}
-
-interface DarkModeState {
-    darkMode: boolean;
-    setDarkMode: () => void;
-}
-
-interface UserState {
-    token: string;
-    userInfo: IUser;
-    loading: boolean;
-    error: unknown;
-    fetchUserInfo: (token: string) => void;
-    setToken: (token: string) => void;
-    deleteToken: () => void;
 }
 
 export const useArticleStore = create<ArticleState>()(
@@ -45,27 +35,49 @@ export const useArticleStore = create<ArticleState>()(
             },
             deleteArticle: (id) => set((state) => ({ articles: state.articles.filter(e => e._id !== id) })),
 
+
+            myArticlesList: [],
+            setMyArticlesList: (userId) => set((state) => ({ myArticlesList: state.articles.filter(e => e.user._id === userId) })),
+            clearMyActircleList: () => set({myArticlesList: []}),
+
             loading: false,
             error: null,
         }), { name: "articleStore" })
     )
 )
 
-export const useDarkModeStore = create<DarkModeState>()(
+
+interface ApplicationState {
+    darkMode: boolean;
+    setDarkMode: () => void;
+}
+
+export const useApplicationStore = create<ApplicationState>()(
     devtools(
         persist((set) => ({
             darkMode: false,
             setDarkMode: () => (set((state) => ({ darkMode: !state.darkMode }))),
-        }), { name: "dark" })
+        }), { name: "applicationStore" })
     )
 )
+
+
+interface UserState {
+    token: string;
+    user: IUser;
+    loading: boolean;
+    error: unknown;
+    fetchUser: (token: string) => void;
+    setToken: (token: string) => void;
+    deleteToken: () => void;
+}
 
 export const useUserStore = create<UserState>()(
     devtools(
         persist((set) => ({
             token: '',
-            userInfo: {
-                id: '',
+            user: {
+                _id: '',
                 fullName: '',
                 email: '',
                 avatarUrl: '',
@@ -75,12 +87,12 @@ export const useUserStore = create<UserState>()(
             },
             loading: false,
             error: null,
-            fetchUserInfo: async (token) => {
+            fetchUser: async (token) => {
                 set({ loading: true })
 
                 try {
                     const response = await getMe(token);
-                    set({ userInfo: response.data, error: null })
+                    set({ user: response.data, error: null })
                 } catch (err) {
                     set({ error: err })
                 }
@@ -91,8 +103,8 @@ export const useUserStore = create<UserState>()(
             setToken: (token) => (set(() => ({ token: token }))),
             deleteToken: () => (set(() => ({
                 token: '', 
-                userInfo: {
-                    id: '',
+                user: {
+                    _id: '',
                     fullName: '',
                     email: '',
                     avatarUrl: '',
@@ -101,6 +113,6 @@ export const useUserStore = create<UserState>()(
                     updatedAt: '',
                 }
             }))),
-        }), { name: "userInfo" })
+        }), { name: "userStore" })
     )
 )

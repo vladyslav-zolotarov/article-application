@@ -10,12 +10,9 @@ interface UserPostProps {
     user: IUser;
 }
 
-const UserPost: FC<UserPostProps> = ({user}) => {
+const UserPost = ({user}: UserPostProps) => {
     let navigate = useNavigate();
-    const { token, fetchUserInfo, userInfo, deleteToken } = useUserStore((state) => ({
-        token: state.token,
-        fetchUserInfo: state.fetchUserInfo,
-        userInfo: state.userInfo,
+    const { deleteToken } = useUserStore((state) => ({
         deleteToken: state.deleteToken,
     }), shallow);
 

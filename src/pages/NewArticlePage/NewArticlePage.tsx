@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { shallow } from 'zustand/shallow';
 import { addNewArticle } from '../../api/endpoints';
 import { IPost } from '../../types/types';
-import { useArticleStore, useUserStore } from '../../utils/store';
+import { useUserStore } from '../../utils/store';
 
 const NewArticlePage: FC = () => {
     let navigate = useNavigate();

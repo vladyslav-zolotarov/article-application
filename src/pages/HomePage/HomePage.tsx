@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import ArticleList from '../../templates/ArticleList/ArticleList';
 
-const HomePage = () => {
+const HomePage: FC = () => {
     return (
         <div className='home_page__container'>
-            <ArticleList />
+            <ArticleList page={'HomePage'} />
         </div>
     );
 };

@@ -3,7 +3,7 @@ import './App.css';
 import HomePage from './pages/HomePage/HomePage';
 import { createBrowserRouter, RouterProvider, useParams } from 'react-router-dom';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
-import {  useArticleStore, useDarkModeStore, useUserStore } from './utils/store';
+import { useArticleStore, useApplicationStore, useUserStore } from './utils/store';
 import { shallow } from 'zustand/shallow';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
@@ -12,25 +12,30 @@ import Header from './components/Header/Header';
 import UserPage from './pages/UserPage/UserPage';
 import NewArticlePage from './pages/NewArticlePage/NewArticlePage';
 import EditArticlePage from './pages/EditArticlePage/EditArticlePage';
+import MyArticlesListPage from './pages/MyArticlesListPage/MyArticlesListPage';
 
 function App() {
-  const { darkMode } = useDarkModeStore((state) => ({
+  const { darkMode } = useApplicationStore((state) => ({
     darkMode: state.darkMode,
   }), shallow);
 
-  const { token, fetchUserInfo, userInfo } = useUserStore((state) => ({
+  const { token, fetchUserInfo, user } = useUserStore((state) => ({
     token: state.token,
-    fetchUserInfo: state.fetchUserInfo,
-    userInfo: state.userInfo,
+    fetchUserInfo: state.fetchUser,
+    user: state.user,
     deleteToken: state.deleteToken,
   }), shallow);
 
   const [toggleDark, setToggleDark] = useState('');
 
 
-  useEffect(() => {
-    if (token && !userInfo.id) {
-      fetchUserInfo(token);
+  useEffect(()  => {
+    if (token && user._id === "") {
+      try {
+        fetchUserInfo(token);
+      } catch (e) {
+        console.log(e)
+      }
     }
   }, [token])
 
@@ -69,6 +74,11 @@ function App() {
       errorElement: <ErrorPage />,
     },
     {
+      path: "/posts/my",
+      element: <MyArticlesListPage />,
+      errorElement: <ErrorPage />
+    },
+    {
       path: "/post/create",
       element: <NewArticlePage />,
       errorElement: <ErrorPage />,
@@ -85,7 +95,7 @@ function App() {
       <Header />
       <div className='flex-1 text-slate-900 dark:text-slate-300 bg-white dark:bg-slate-900'>
         <div className='max-w-7xl mx-auto py-5'>
-          <RouterProvider router={router} />
+          <RouterProvider router={router} fallbackElement={<div>LOADING...</div>} />
         </div>
       </div>
     </div>

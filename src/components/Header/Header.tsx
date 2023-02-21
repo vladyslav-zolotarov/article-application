@@ -1,30 +1,27 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { shallow } from 'zustand/shallow';
 import UserMinPost from '../../templates/UserMinPost/UserMinPost';
-import { useDarkModeStore, useUserStore } from '../../utils/store';
+import { useApplicationStore, useArticleStore, useUserStore } from '../../utils/store';
 
 import { SunIcon, MoonIcon, ChevronDownIcon, UserCircleIcon, ArrowLeftOnRectangleIcon } from "@heroicons/react/24/solid";
 
 const Header: FC = () => {
     const [dropdownOpened, setDropdownOpened] = useState(false);
 
-    const { darkMode, setDarkMode } = useDarkModeStore((state) => ({
+    const { darkMode, setDarkMode } = useApplicationStore((state) => ({
         darkMode: state.darkMode,
         setDarkMode: state.setDarkMode
     }), shallow)
 
-    const { token, fetchUserInfo, userInfo, deleteToken } = useUserStore((state) => ({
+    const { token, user, deleteToken } = useUserStore((state) => ({
         token: state.token,
-        fetchUserInfo: state.fetchUserInfo,
-        userInfo: state.userInfo,
+        user: state.user,
         deleteToken: state.deleteToken,
     }), shallow);
 
-    // useEffect(() => {
-    //     if (token && !userInfo.id) {
-    //         fetchUserInfo(token);
-    //     }
-    // }, [])
+    const { clearMyActircleList } = useArticleStore((state) => ({
+        clearMyActircleList: state.clearMyActircleList,
+    }), shallow);
 
     const onDropdownToggle = () => {
         setDropdownOpened(!dropdownOpened);
@@ -32,6 +29,7 @@ const Header: FC = () => {
 
     const onSignOut = () => {
         deleteToken();
+        clearMyActircleList();
     }
 
     return (
@@ -48,12 +46,6 @@ const Header: FC = () => {
                                 <a href="/" className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Home</a>
                             </li>
                             <li>
-                                <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">My posts</a>
-                            </li>
-                            <li>
-                                <a href="/post/create" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Add new</a>
-                            </li>
-                            <li>
                                 <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
                             </li>
                         </ul>
@@ -67,10 +59,10 @@ const Header: FC = () => {
                             }</span>
                         </button>
 
-                        {token ?
+                        {token && user._id !== '' ?
                             <div className='relative'>
                                 <button onClick={onDropdownToggle} className='flex items-center text-gray-900 dark:text-gray-300'>
-                                    <UserMinPost user={userInfo} />
+                                    <UserMinPost user={user} />
                                     <ChevronDownIcon className="ml-2 h-4 text-gray-500" />
                                 </button>
                                 {dropdownOpened && <div className="z-10 absolute mt-2 right-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-40 dark:bg-gray-800 dark:border-gray-700">
@@ -78,6 +70,12 @@ const Header: FC = () => {
                                         <li>
                                             <a href="/auth/me" className="flex px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><UserCircleIcon className="h-5 mr-2 text-gray-500" /><span>My account</span></a>
                                         </li>
+                                        {/* <li>
+                                            <a href="/posts/my" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">My posts</a>
+                                        </li>
+                                        <li>
+                                            <a href="/post/create" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Create new post</a>
+                                        </li> */}
                                         <li>
                                             <a href="#" onClick={onSignOut} className="flex px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"><ArrowLeftOnRectangleIcon className="h-5 mr-2 text-gray-500" /><span>Sign out</span></a>
                                         </li>

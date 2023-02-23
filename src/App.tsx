@@ -93,7 +93,7 @@ function App() {
   return (
     <div className={`App flex flex-col min-h-screen ${toggleDark}`}>
       <Header />
-      <div className='flex-1 text-slate-900 dark:text-slate-300 bg-white dark:bg-slate-900'>
+      <div className='flex-1 text-slate-900 dark:text-slate-300 bg-gray-100 dark:bg-slate-900'>
         <div className='max-w-7xl mx-auto py-5'>
           <RouterProvider router={router} fallbackElement={<div>LOADING...</div>} />
         </div>

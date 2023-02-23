@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { getArticlePosts } from '../../api/endpoints';
 import { IPost } from '../../types/types';
 import { shallow } from 'zustand/shallow';
 import ArticlePost from '../ArticlePost/ArticlePost';

@@ -8,7 +8,7 @@ import { shallow } from 'zustand/shallow';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
 import LoginPage from './pages/LoginPage/LoginPage';
-import Header from './components/Header/Header';
+import Header from './templates/Header/Header';
 import UserPage from './pages/UserPage/UserPage';
 import NewArticlePage from './pages/NewArticlePage/NewArticlePage';
 import EditArticlePage from './pages/EditArticlePage/EditArticlePage';

@@ -7,7 +7,7 @@ import { EyeIcon } from "@heroicons/react/24/solid";
 import { format } from 'date-fns';
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/solid";
 
-import UserMinPost from '../UserMinPost/UserMinPost';
+import UserMinPost from '../../components/UserMinPost/UserMinPost';
 import { removeOneArticlePost } from '../../api/endpoints';
 import { shallow } from 'zustand/shallow';
 

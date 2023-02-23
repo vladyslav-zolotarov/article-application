@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { shallow } from 'zustand/shallow';
-import UserMinPost from '../../templates/UserMinPost/UserMinPost';
+import UserMinPost from '../UserMinPost/UserMinPost';
 import { useArticleStore, useUserStore } from '../../utils/store';
 import { ArrowLeftOnRectangleIcon, ChevronDownIcon, ListBulletIcon, PencilIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 

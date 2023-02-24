@@ -1,5 +1,6 @@
 import React, { FC } from 'react';
 import { HomeIcon, ListBulletIcon, PencilIcon } from '@heroicons/react/24/solid';
+import { NavLink } from 'react-router-dom';
 
 const Navbar: FC = () => {
     return (
@@ -12,15 +13,15 @@ const Navbar: FC = () => {
                 <ul className="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                     <li className='navbar-item'>
                         <HomeIcon className="h-4 mr-2" />
-                        <a href="/" className="navbar-link">Home</a>
+                        <NavLink to="/" className="navbar-link">Home</NavLink>
                     </li>
                     <li className='navbar-item'>
                         <ListBulletIcon className="h-5 mr-2" />
-                        <a href="/posts/my" className="navbar-link">List of my articles</a>
+                        <NavLink to="/posts/my" className="navbar-link">List of my articles</NavLink>
                     </li>
                     <li className='navbar-item'>
                         <PencilIcon className="h-4 mr-2" />
-                        <a href="/post/create" className="navbar-link">Create new article</a>
+                        <NavLink to="/post/create" className="navbar-link">Create new article</NavLink>
                     </li>
                 </ul>
             </div>

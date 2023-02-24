@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import HomePage from './pages/HomePage/HomePage';
-import { createBrowserRouter, RouterProvider, useParams } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
-import { useArticleStore, useApplicationStore, useUserStore } from './utils/store';
+import { useApplicationStore, useUserStore } from './utils/store';
 import { shallow } from 'zustand/shallow';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import RegisterPage from './pages/RegisterPage/RegisterPage';
@@ -29,7 +29,7 @@ function App() {
   const [toggleDark, setToggleDark] = useState('');
 
 
-  useEffect(()  => {
+  useEffect(() => {
     if (token && user._id === "") {
       try {
         fetchUserInfo(token);
@@ -47,57 +47,51 @@ function App() {
     }
   }, [darkMode])
 
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <HomePage />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: "/auth/register",
-      element: <RegisterPage />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: "/auth/login",
-      element: <LoginPage />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: "/auth/me",
-      element: <UserPage />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: "/post/:id",
-      element: <ArticlePage />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: "/posts/my",
-      element: <MyArticlesListPage />,
-      errorElement: <ErrorPage />
-    },
-    {
-      path: "/post/create",
-      element: <NewArticlePage />,
-      errorElement: <ErrorPage />,
-    },
-    {
-      path: "/post/edit/:id",
-      element: <EditArticlePage />,
-      errorElement: <ErrorPage />,
-    }
-  ]);
-
   return (
     <div className={`App flex flex-col min-h-screen ${toggleDark}`}>
-      <Header />
-      <div className='flex-1 text-slate-900 dark:text-slate-300 bg-gray-100 dark:bg-slate-900'>
-        <div className='max-w-7xl mx-auto py-5'>
-          <RouterProvider router={router} fallbackElement={<div>LOADING...</div>} />
+      <BrowserRouter>
+        <Header />
+        <div className='flex-1 text-slate-900 dark:text-slate-300 bg-gray-100 dark:bg-slate-900'>
+          <div className='max-w-7xl mx-auto py-5'>
+            <Routes>
+              <Route path="/"
+                element={<HomePage />}
+                errorElement={<ErrorPage />}>
+              </Route>
+              <Route path={"/auth/register"}
+                element={<RegisterPage />}
+                errorElement={<ErrorPage />}>
+              </Route>
+              <Route path={"/auth/login"}
+                element={<LoginPage />}
+                errorElement={<ErrorPage />}>
+              </Route>
+
+              <Route path={"/auth/me"}
+                element={<UserPage />}
+                errorElement={<ErrorPage />}>
+              </Route>
+              <Route path={"/post/:id"}
+                element={<ArticlePage />}
+                errorElement={<ErrorPage />}>
+              </Route>
+
+              <Route path={"/posts/my"}
+                element={<MyArticlesListPage />}
+                errorElement={<ErrorPage />}>
+              </Route>
+              <Route path={"/post/create"}
+                element={<NewArticlePage />}
+                errorElement={<ErrorPage />}>
+              </Route>
+              <Route path={"/post/edit/:id"}
+                element={<EditArticlePage />}
+                errorElement={<ErrorPage />}>
+              </Route>
+            </Routes>
+          </div>
         </div>
-      </div>
+      </BrowserRouter>
     </div>
   );
 }

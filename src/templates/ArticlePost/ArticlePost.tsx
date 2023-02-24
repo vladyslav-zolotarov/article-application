@@ -50,10 +50,10 @@ const ArticlePost = ({ post, showMenu }: ArticlePostProps) => {
             {dropdownOpened && <div className="z-10 top-full mt-3 absolute right-0 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
               <ul className="py-2 text-sm shadow border rounded-lg border-gray-200 text-gray-700 dark:border-gray-700 dark:text-gray-200">
                 <li>
-                  <a href={`/post/edit/${post._id}`} className="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                  <Link to={`/post/edit/${post._id}`} className="flex items-center px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                     <PencilIcon className="h-4 mr-2 text-gray-500" />
                     <span>Edit</span>
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <button onClick={onRemovePostHandler} className="flex items-center w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">

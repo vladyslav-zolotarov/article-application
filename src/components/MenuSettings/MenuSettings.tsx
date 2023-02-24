@@ -3,6 +3,7 @@ import { shallow } from 'zustand/shallow';
 import UserMinPost from '../UserMinPost/UserMinPost';
 import { useArticleStore, useUserStore } from '../../utils/store';
 import { ArrowLeftOnRectangleIcon, ChevronDownIcon, ListBulletIcon, PencilIcon, UserCircleIcon } from '@heroicons/react/24/solid';
+import { NavLink } from 'react-router-dom';
 
 const MenuSettings: FC = () => {
     const [dropdownOpened, setDropdownOpened] = useState(false);
@@ -43,16 +44,16 @@ const MenuSettings: FC = () => {
                         </div>
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                             <li>
-                                <a href="/auth/me" className="menu-settings-link"><UserCircleIcon className="h-5 mr-2 text-gray-500" /><span>My account</span></a>
+                                <NavLink to="/auth/me" className="menu-settings-link"><UserCircleIcon className="h-5 mr-2 text-gray-500" /><span>My account</span></NavLink>
                             </li>
                             <li>
-                                <a href="/posts/my" className="menu-settings-link"><ListBulletIcon className="h-5 mr-2 text-gray-500" /><span>My articles</span></a>
+                                <NavLink to="/posts/my" className="menu-settings-link"><ListBulletIcon className="h-5 mr-2 text-gray-500" /><span>My articles</span></NavLink>
                             </li>
                             <li className='mb-2'>
-                                <a href="/post/create" className="menu-settings-link"><PencilIcon className="h-5 mr-2 text-gray-500" /><span>Create new article</span></a>
+                                <NavLink to="/post/create" className="menu-settings-link"><PencilIcon className="h-5 mr-2 text-gray-500" /><span>Create new article</span></NavLink>
                             </li>
                             <li className='border-t border-gray-200 dark:border-gray-600'>
-                                <a href="#" onClick={onSignOut} className="menu-settings-link"><ArrowLeftOnRectangleIcon className="h-5 mr-2 text-gray-500" /><span>Sign out</span></a>
+                                <NavLink to="#" onClick={onSignOut} className="menu-settings-link"><ArrowLeftOnRectangleIcon className="h-5 mr-2 text-gray-500" /><span>Sign out</span></NavLink>
                             </li>
                         </ul>
                     </div>}
@@ -60,10 +61,10 @@ const MenuSettings: FC = () => {
                 <div>
                     <ul className='flex flex-col p-4 mt-4 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700'>
                         <li>
-                            <a className='menu-setting-link-2' href="/auth/login">Sign in</a>
+                            <NavLink className='menu-setting-link-2' to="/auth/login">Sign in</NavLink>
                         </li>
                         <li>
-                            <a className='menu-setting-link-2' href="/auth/register">Sign up</a>
+                            <NavLink className='menu-setting-link-2' to="/auth/register">Sign up</NavLink>
                         </li>
                     </ul>
                 </div>

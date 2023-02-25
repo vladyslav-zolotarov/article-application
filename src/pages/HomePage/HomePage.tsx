@@ -4,7 +4,7 @@ import ArticleList from '../../templates/ArticleList/ArticleList';
 const HomePage: FC = () => {
     return (
         <div className='home_page__container'>
-            <ArticleList page={'HomePage'} />
+            <ArticleList />
         </div>
     );
 };

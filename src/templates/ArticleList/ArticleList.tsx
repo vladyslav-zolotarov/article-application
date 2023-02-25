@@ -8,7 +8,7 @@ import List from '../../components/List/List/List';
 import { useArticleStore } from '../../utils/store';
 import ArticlePostSkeleton from '../../skeletons/ArticlePostSkeleton/ArticlePostSkeleton';
 
-const ArticleList = ({ page }: { page: string }) => {
+const ArticleList = () => {
     const { articles, loading, error, fetchArticles } = useArticleStore((state) => ({
         articles: state.articles,
         loading: state.loading,
@@ -25,8 +25,9 @@ const ArticleList = ({ page }: { page: string }) => {
             style='grid grid-cols-2 gap-7'
             items={articles ? articles : Array(2)}
 
-            renderItem={loading ? () => <ArticlePostSkeleton key={Math.random()} /> :
-                (post: IPost) => <ArticlePost page={page} post={post} key={post.title} />
+            renderItem={
+                // loading ? () => <ArticlePost key={Math.random()} /> :
+                (post: IPost) => <ArticlePost post={post} key={post.title} />
             }
         />
     );

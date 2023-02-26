@@ -1,8 +1,8 @@
 import React from 'react';
-import { IPost } from '../../../types/types';
+import { IArticleComponentProps } from '../../../types/types';
 import { EyeIcon } from '@heroicons/react/24/solid';
 
-const AViewCount = ({ post, classList, classListSkeleton }: { post?: IPost, classList: string, classListSkeleton?: string }) => {
+export const AViewCount = ({ post, classList, classListSkeleton }: IArticleComponentProps) => {
     return (
         <div className={classList}>
             {post ?
@@ -17,5 +17,3 @@ const AViewCount = ({ post, classList, classListSkeleton }: { post?: IPost, clas
         </div>
     );
 };
-
-export default AViewCount;

@@ -1,8 +1,8 @@
 import React from 'react';
-import { IPost } from '../../../types/types';
+import { IArticleComponentProps } from '../../../types/types';
 import format from 'date-fns/format';
 
-const ADate = ({ post, classList, classListSkeleton }: { post?: IPost, classList: string, classListSkeleton?: string }) => {
+export const ADate = ({ post, classList, classListSkeleton }: IArticleComponentProps) => {
     return (
         <div className={classList}>
             {post ?
@@ -14,5 +14,3 @@ const ADate = ({ post, classList, classListSkeleton }: { post?: IPost, classList
         </div>
     );
 };
-
-export default ADate;

@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
 import { shallow } from 'zustand/shallow';
-import UserMinPost from '../UserMinPost/UserMinPost';
+import UserMin from '../UserMin/UserMin';
 import { useArticleStore, useUserStore } from '../../utils/store';
 import { ArrowLeftOnRectangleIcon, ChevronDownIcon, ListBulletIcon, PencilIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import { NavLink } from 'react-router-dom';
@@ -40,7 +40,7 @@ const MenuSettings: FC = () => {
                     </button>
                     {dropdownOpened && <div className="z-10 absolute mt-4 top-full right-0 bg-white rounded-lg shadow w-72 dark:bg-gray-800 dark:border-gray-700">
                         <div className='text-sm px-4 py-2 border-b border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-200'>
-                            <UserMinPost user={user} />
+                            <UserMin user={user} />
                         </div>
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                             <li>

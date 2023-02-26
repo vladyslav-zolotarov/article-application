@@ -1,7 +1,7 @@
 import React from 'react';
-import { IPost } from '../../../types/types';
+import { IArticleComponentProps } from '../../../types/types';
 
-const ATitle = ({ post, classList, classListSkeleton }: { post?: IPost, classList: string, classListSkeleton?: string }) => {
+export const ATitle = ({ post, classList, classListSkeleton }: IArticleComponentProps) => {
     return (
         <div className={classList}>
             {post ?
@@ -11,5 +11,3 @@ const ATitle = ({ post, classList, classListSkeleton }: { post?: IPost, classLis
         </div>
     );
 };
-
-export default ATitle;

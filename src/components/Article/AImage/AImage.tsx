@@ -1,8 +1,8 @@
 import React from 'react';
-import { IPost } from '../../../types/types';
+import { IArticleComponentProps } from '../../../types/types';
 import { RocketLaunchIcon } from '@heroicons/react/24/solid';
 
-const AImage = ({ post, classList }: { post?: IPost, classList: string }) => {
+export const AImage = ({ post, classList }: IArticleComponentProps) => {
     return (
         <div className={classList}>
             {post && post.imageUrl ?
@@ -16,5 +16,3 @@ const AImage = ({ post, classList }: { post?: IPost, classList: string }) => {
         </div>
     );
 };
-
-export default AImage;

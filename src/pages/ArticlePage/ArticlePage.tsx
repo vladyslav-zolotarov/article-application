@@ -2,13 +2,7 @@ import { FC, useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOneArticlePost } from '../../api/endpoints';
-import ADate from '../../components/Article/ADate/ADate';
-import AImage from '../../components/Article/AImage/AImage';
-import AText from '../../components/Article/AText/AText';
-import ATitle from '../../components/Article/ATitle/ATitle';
-import AViewCount from '../../components/Article/AViewCount/AViewCount';
-import ArticlePostSkeleton from '../../skeletons/ArticlePostSkeleton/ArticlePostSkeleton';
-import ArticlePost from '../../templates/ArticlePost/ArticlePost';
+import { ArticleWrapper, ArticleDate, ArticleImage, ArticleTags, ArticleText, ArticleTitle, ArticleViewCount } from '../../components/Article/article';
 import { IPost } from '../../types/types';
 
 
@@ -35,24 +29,35 @@ const ArticlePage: FC = () => {
 
     return (
         <div className='article_page__container'>
-            <div className='article__item_sub'>
-                <AImage post={selectedArticle} classList={'mb-6 h-64 w-full'} />
-                <div className='flex justify-between'>
-                    <ATitle post={selectedArticle} classList={'block text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-3'} classListSkeleton={'h-8 rounded-full w-2/4 bg-gray-200 dark:bg-gray-700'} />
-                    <div className='flex'>
-                        <ADate post={selectedArticle} classList={'mb-3'} classListSkeleton={'flex mr-4 h-4 rounded-full w-40 bg-gray-200 dark:bg-gray-700'} />
-                        <AViewCount post={selectedArticle} classList={'mb-3 flex'} classListSkeleton={'flex h-4 rounded-full w-14 bg-gray-200 dark:bg-gray-700'} />
+            <ArticleWrapper
+                classList={'p-5 border rounded-lg shadow bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700'}>
+                <>
+                    <div className='article__item_user flex justify-between'>
                     </div>
-                </div>
-                <AText post={selectedArticle} classList={'mb-3 block font-normal text-gray-700 dark:text-gray-400'} />
-                <ul className='article__item_tags'>
-                    Tags:
-                    {selectedArticle?.tags?.map((tag) => {
-                        return <li key={tag}>{tag}</li>
-                    })}
-                </ul>
-
-            </div>
+                    <ArticleImage post={selectedArticle}
+                        classList={'mb-6 h-64 w-full'} />
+                    <div className='flex justify-between'>
+                        <ArticleTitle post={selectedArticle}
+                            classList={'block text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-3'}
+                            classListSkeleton={'h-8 w-60 rounded-full w-2/4 bg-gray-200 dark:bg-gray-700'} />
+                        <div className='flex'>
+                            <ArticleDate post={selectedArticle}
+                                classList={'mb-3'}
+                                classListSkeleton={'flex mr-4 h-4 rounded-full w-40 bg-gray-200 dark:bg-gray-700'} />
+                            <ArticleViewCount post={selectedArticle}
+                                classList={'mb-3 flex'}
+                                classListSkeleton={'flex h-4 rounded-full w-14 bg-gray-200 dark:bg-gray-700'} />
+                        </div>
+                    </div>
+                    <ArticleText post={selectedArticle}
+                        classList={'mb-3 block font-normal text-gray-700 dark:text-gray-400'} />
+                    <div className='flex flex-wrap mb-3'>
+                        <ArticleTags post={selectedArticle}
+                            classList={'bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300'}
+                            classListSkeleton={'bg-gray-200 dark:bg-gray-700 h-5 w-14 mr-2 px-2.5 py-0.5 rounded-full'} />
+                    </div>
+                </>
+            </ArticleWrapper>
         </div>
     );
 };

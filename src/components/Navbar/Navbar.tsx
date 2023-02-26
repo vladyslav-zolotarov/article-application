@@ -15,14 +15,14 @@ const Navbar: FC = () => {
                         <HomeIcon className="h-4 mr-2" />
                         <NavLink to="/" className="navbar-link">Home</NavLink>
                     </li>
-                    <li className='navbar-item'>
+                    {/* <li className='navbar-item'>
                         <ListBulletIcon className="h-5 mr-2" />
                         <NavLink to="/posts/my" className="navbar-link">List of my articles</NavLink>
                     </li>
                     <li className='navbar-item'>
                         <PencilIcon className="h-4 mr-2" />
                         <NavLink to="/post/create" className="navbar-link">Create new article</NavLink>
-                    </li>
+                    </li> */}
                 </ul>
             </div>
         </nav>

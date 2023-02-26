@@ -1,7 +1,7 @@
 import React from 'react';
-import { IPost } from '../../../types/types';
+import { IArticleComponentProps } from '../../../types/types';
 
-const AText = ({ post, classList }: { post?: IPost, classList: string }) => {
+export const AText = ({ post, classList }: IArticleComponentProps) => {
     return (
         <div className={classList}>
             {post ?
@@ -14,5 +14,3 @@ const AText = ({ post, classList }: { post?: IPost, classList: string }) => {
         </div>
     );
 };
-
-export default AText;

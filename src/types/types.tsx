@@ -32,3 +32,9 @@ export interface IPost {
     imageUrl: string | any;
     tags: Array<string>;
 }
+
+export interface IArticleComponentProps {
+    post?: IPost;
+    classList?: string;
+    classListSkeleton?: string;
+}

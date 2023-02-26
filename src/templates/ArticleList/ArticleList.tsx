@@ -6,7 +6,6 @@ import { shallow } from 'zustand/shallow';
 import ArticlePost from '../ArticlePost/ArticlePost';
 import List from '../../components/List/List/List';
 import { useArticleStore } from '../../utils/store';
-import ArticlePostSkeleton from '../../skeletons/ArticlePostSkeleton/ArticlePostSkeleton';
 
 const ArticleList = () => {
     const { articles, loading, error, fetchArticles } = useArticleStore((state) => ({
@@ -26,7 +25,7 @@ const ArticleList = () => {
             items={articles ? articles : Array(2)}
 
             renderItem={
-                // loading ? () => <ArticlePost key={Math.random()} /> :
+                loading ? () => <ArticlePost key={Math.random()} /> :
                 (post: IPost) => <ArticlePost post={post} key={post.title} />
             }
         />

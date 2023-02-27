@@ -13,6 +13,7 @@ import UserPage from './pages/UserPage/UserPage';
 import NewArticlePage from './pages/NewArticlePage/NewArticlePage';
 import EditArticlePage from './pages/EditArticlePage/EditArticlePage';
 import MyArticlesListPage from './pages/MyArticlesListPage/MyArticlesListPage';
+import Footer from './templates/Footer/Footer';
 
 function App() {
   const { darkMode } = useApplicationStore((state) => ({
@@ -52,7 +53,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <div className='flex-1 text-slate-900 dark:text-slate-300 bg-gray-100 dark:bg-slate-900'>
-          <div className='max-w-7xl mx-auto py-5'>
+          <div className='max-w-7xl mx-auto py-7'>
             <Routes>
               <Route path="/"
                 element={<HomePage />}
@@ -91,6 +92,7 @@ function App() {
             </Routes>
           </div>
         </div>
+        <Footer />
       </BrowserRouter>
     </div>
   );

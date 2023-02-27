@@ -3,6 +3,7 @@ import Search from '../../components/Search/Search';
 import DarkModeToggler from '../../components/DarkModeToggler/DarkModeToggler';
 import MenuSettings from '../../components/MenuSettings/MenuSettings';
 import Navbar from '../../components/Navbar/Navbar';
+import { RocketLaunchIcon } from '@heroicons/react/24/solid';
 
 const Header: FC = () => {
     return (
@@ -10,7 +11,6 @@ const Header: FC = () => {
             <div className="container flex flex-wrap items-center justify-between max-w-7xl mx-auto">
                 <Navbar />
                 <Search />
-
                 <div className='flex'>
                     <DarkModeToggler />
                     <MenuSettings />

@@ -3,9 +3,11 @@ import { shallow } from 'zustand/shallow';
 import UserMin from '../UserMin/UserMin';
 import { useArticleStore, useUserStore } from '../../utils/store';
 import { ArrowLeftOnRectangleIcon, ChevronDownIcon, ListBulletIcon, PencilIcon, UserCircleIcon } from '@heroicons/react/24/solid';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 const MenuSettings: FC = () => {
+    let navigate = useNavigate();
+
     const [dropdownOpened, setDropdownOpened] = useState(false);
 
     const { token, user, deleteToken } = useUserStore((state) => ({
@@ -44,16 +46,16 @@ const MenuSettings: FC = () => {
                         </div>
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                             <li>
-                                <NavLink to="/auth/me" className="menu-settings-link"><UserCircleIcon className="h-5 mr-2 text-gray-500" /><span>My account</span></NavLink>
+                                <Link to="/auth/me" className="menu-settings-link"><UserCircleIcon className="h-5 mr-2 text-gray-500" /><span>My account</span></Link>
                             </li>
                             <li>
-                                <NavLink to="/posts/my" className="menu-settings-link"><ListBulletIcon className="h-5 mr-2 text-gray-500" /><span>My articles</span></NavLink>
+                                <Link to="/posts/my" className="menu-settings-link"><ListBulletIcon className="h-5 mr-2 text-gray-500" /><span>My articles</span></Link>
                             </li>
                             <li className='mb-2'>
-                                <NavLink to="/post/create" className="menu-settings-link"><PencilIcon className="h-5 mr-2 text-gray-500" /><span>Create new article</span></NavLink>
+                                <Link to="/post/create" className="menu-settings-link"><PencilIcon className="h-5 mr-2 text-gray-500" /><span>Add new article</span></Link>
                             </li>
                             <li className='border-t border-gray-200 dark:border-gray-600'>
-                                <NavLink to="#" onClick={onSignOut} className="menu-settings-link"><ArrowLeftOnRectangleIcon className="h-5 mr-2 text-gray-500" /><span>Sign out</span></NavLink>
+                                <Link to="/" onClick={onSignOut} className="menu-settings-link"><ArrowLeftOnRectangleIcon className="h-5 mr-2 text-gray-500" /><span>Sign out</span></Link>
                             </li>
                         </ul>
                     </div>}

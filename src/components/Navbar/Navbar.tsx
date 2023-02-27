@@ -1,8 +1,12 @@
 import React, { FC } from 'react';
 import { HomeIcon, ListBulletIcon, PencilIcon } from '@heroicons/react/24/solid';
 import { NavLink } from 'react-router-dom';
+import { useUserStore } from '../../utils/store';
 
 const Navbar: FC = () => {
+    const { token } = useUserStore((state) => ({
+        token: state.token,
+    }))
     return (
         <nav className="navbar">
             <button data-collapse-toggle="navbar" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
@@ -15,11 +19,13 @@ const Navbar: FC = () => {
                         <HomeIcon className="h-4 mr-2" />
                         <NavLink to="/" className="navbar-link">Home</NavLink>
                     </li>
-                    {/* <li className='navbar-item'>
-                        <ListBulletIcon className="h-5 mr-2" />
-                        <NavLink to="/posts/my" className="navbar-link">List of my articles</NavLink>
-                    </li>
-                    <li className='navbar-item'>
+                    {token &&
+                        <li className='navbar-item'>
+                            <ListBulletIcon className="h-5 mr-2" />
+                            <NavLink to="/posts/my" className="navbar-link">My articles</NavLink>
+                        </li>
+                    }
+                    {/*<li className='navbar-item'>
                         <PencilIcon className="h-4 mr-2" />
                         <NavLink to="/post/create" className="navbar-link">Create new article</NavLink>
                     </li> */}

@@ -5,8 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserStore } from '../../utils/store';
 import { shallow } from 'zustand/shallow';
 import { IUserLogin } from '../../types/types';
-import FInput from '../../components/Form/FInput/FInput';
-import FButton from '../../components/Form/FButton/FButton';
+import { FormInput, FormButton } from '../../components/Form/FormComponents';
 
 const LoginPage: FC = () => {
     let navigate = useNavigate();
@@ -52,7 +51,7 @@ const LoginPage: FC = () => {
                 <h1 className='mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white'>Login page</h1>
 
                 <div className='email_input pb-7'>
-                    <FInput
+                    <FormInput
                         label="Input e-mail"
                         id='email'
                         type="email"
@@ -69,7 +68,7 @@ const LoginPage: FC = () => {
                 </div>
 
                 <div className='password_input pb-7'>
-                    <FInput
+                    <FormInput
                         label="Input your password"
                         id="password"
                         type="password"
@@ -85,7 +84,7 @@ const LoginPage: FC = () => {
                     />
                 </div>
 
-                <FButton
+                <FormButton
                     text={'Login'}
                     handle={handleClickSubmitForm}
                     isLoaded={isLoaded}

@@ -13,7 +13,7 @@ interface FormInputProps {
     errorMessage?: string,
 }
 
-const FInput = ({ label, id, type, ariaDescribedby, placeholder, inputRegister, register, isError, errorMessage }: FormInputProps) => {
+export const FInput = ({ label, id, type, ariaDescribedby, placeholder, inputRegister, register, isError, errorMessage }: FormInputProps) => {
     return (
         <>
             <label htmlFor={id} className="block mb-2 text-lg font-medium text-gray-900 dark:text-white">{label}</label>
@@ -29,5 +29,3 @@ const FInput = ({ label, id, type, ariaDescribedby, placeholder, inputRegister, 
         </>
     );
 };
-
-export default FInput;

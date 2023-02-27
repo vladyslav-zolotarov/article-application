@@ -1,9 +1,9 @@
 import React, { ChangeEvent, FC, ReactNode, useEffect, useState } from 'react';
-import { IPost } from '../../types/types';
-import { useArticleStore } from '../../utils/store';
+import { IPost } from '../../../types/types';
+import { useArticleStore } from '../../../utils/store';
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { Link } from 'react-router-dom';
-import { ArticleImage, ArticleText, ArticleTitle, ArticleViewCount } from '../Article/article';
+import { ArticleImage, ArticleText, ArticleTitle, ArticleViewCount } from '../../Article/ArticleComponents';
 
 const Search: FC = () => {
     const [inputValue, setInputValue] = useState<string>();

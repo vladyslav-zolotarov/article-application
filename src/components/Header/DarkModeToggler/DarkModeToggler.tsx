@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useApplicationStore } from '../../utils/store';
+import { useApplicationStore } from '../../../utils/store';
 import { MoonIcon, SunIcon } from '@heroicons/react/24/solid';
 import { shallow } from 'zustand/shallow';
 

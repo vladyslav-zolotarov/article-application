@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { HomeIcon, ListBulletIcon, PencilIcon } from '@heroicons/react/24/solid';
 import { NavLink } from 'react-router-dom';
-import { useUserStore } from '../../utils/store';
+import { useUserStore } from '../../../utils/store';
 
 const Navbar: FC = () => {
     const { token } = useUserStore((state) => ({

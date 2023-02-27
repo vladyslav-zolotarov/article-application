@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { IPost } from '../../types/types';
-import UserMin from '../../components/UserMin/UserMin';
-import { ArticleWrapper, ArticleDate, ArticleImage, ArticleTags, ArticleText, ArticleTitle, ArticleViewCount, ArticleMenuAdditional } from '../../components/Article/article';
+import UserMin from '../UserMin/UserMin';
+import { ArticleWrapper, ArticleDate, ArticleImage, ArticleTags, ArticleText, ArticleTitle, ArticleViewCount, ArticleMenuAdditional } from '../../components/Article/ArticleComponents';
 
 interface ArticlePostProps {
   post?: IPost;

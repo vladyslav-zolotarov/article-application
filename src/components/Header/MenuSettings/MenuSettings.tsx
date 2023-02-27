@@ -1,7 +1,7 @@
 import React, { FC, useState } from 'react';
 import { shallow } from 'zustand/shallow';
-import UserMin from '../UserMin/UserMin';
-import { useArticleStore, useUserStore } from '../../utils/store';
+import UserMin from '../../../templates/UserMin/UserMin';
+import { useArticleStore, useUserStore } from '../../../utils/store';
 import { ArrowLeftOnRectangleIcon, ChevronDownIcon, ListBulletIcon, PencilIcon, UserCircleIcon } from '@heroicons/react/24/solid';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 

@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
-import Search from '../../components/Search/Search';
-import DarkModeToggler from '../../components/DarkModeToggler/DarkModeToggler';
-import MenuSettings from '../../components/MenuSettings/MenuSettings';
-import Navbar from '../../components/Navbar/Navbar';
-import { RocketLaunchIcon } from '@heroicons/react/24/solid';
+import Search from '../../components/Header/Search/Search';
+import DarkModeToggler from '../../components/Header/DarkModeToggler/DarkModeToggler';
+import MenuSettings from '../../components/Header/MenuSettings/MenuSettings';
+import Navbar from '../../components/Header/Navbar/Navbar';
 
 const Header: FC = () => {
     return (

@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useUserStore } from '../../utils/store';
 import { shallow } from 'zustand/shallow';
 import { IUserRegister } from '../../types/types';
-import FInput from '../../components/Form/FInput/FInput';
-import FButton from '../../components/Form/FButton/FButton';
+import { FormInput, FormButton } from '../../components/Form/FormComponents';
+
 
 const RegisterPage: FC = () => {
     let navigate = useNavigate();
@@ -49,7 +49,7 @@ const RegisterPage: FC = () => {
                 <h1 className='mb-6 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white'>Register page</h1>
 
                 <div className='full_name_input pb-7'>
-                    <FInput
+                    <FormInput
                         label="Input full name"
                         id="fullName"
                         type="text"
@@ -66,7 +66,7 @@ const RegisterPage: FC = () => {
                 </div>
 
                 <div className='email_input pb-7'>
-                    <FInput
+                    <FormInput
                         label="Input e-mail"
                         id='email'
                         type="email"
@@ -83,7 +83,7 @@ const RegisterPage: FC = () => {
                 </div>
 
                 <div className='password_input pb-7'>
-                    <FInput
+                    <FormInput
                         label="Input your password"
                         id="password"
                         type="password"
@@ -99,7 +99,7 @@ const RegisterPage: FC = () => {
                     />
                 </div>
 
-                <FButton
+                <FormButton
                     text={'Create account'}
                     handle={handleClickSubmitForm}
                     isLoaded={isLoaded}

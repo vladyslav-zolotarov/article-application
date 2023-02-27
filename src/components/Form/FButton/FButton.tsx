@@ -7,7 +7,7 @@ interface FormButtonProps {
     isLoaded: boolean,
 }
 
-const FButton = ({text, handle, isLoaded, isValid} : FormButtonProps) => {
+export const FButton = ({text, handle, isLoaded, isValid} : FormButtonProps) => {
     return (
         <button 
             onClick={handle} 
@@ -26,5 +26,3 @@ const FButton = ({text, handle, isLoaded, isValid} : FormButtonProps) => {
         </button>
     );
 };
-
-export default FButton;

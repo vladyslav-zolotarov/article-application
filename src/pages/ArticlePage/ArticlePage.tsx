@@ -2,7 +2,7 @@ import { FC, useState } from 'react';
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOneArticlePost } from '../../api/endpoints';
-import { ArticleWrapper, ArticleDate, ArticleImage, ArticleTags, ArticleText, ArticleTitle, ArticleViewCount } from '../../components/Article/article';
+import { ArticleWrapper, ArticleDate, ArticleImage, ArticleTags, ArticleText, ArticleTitle, ArticleViewCount } from '../../components/Article/ArticleComponents';
 import { IPost } from '../../types/types';
 
 
